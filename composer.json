@@ -1,0 +1,34 @@
+{
+  "name": "kunicmarko/form-annotation-bundle",
+  "description": "This is a Symfony Bundle that adds helper annotations for symfony forms.",
+  "type": "symfony-bundle",
+  "authors": [
+    {
+      "name": "Marko Kunic",
+      "email": "kunicmarko20@gmail.com",
+      "homepage": "https://twitter.com/kunicmarko20"
+    }
+  ],
+  "keywords": ["symfony", "symfony-forms", "forms", "annotations"],
+  "homepage": "https://github.com/kunicmarko20/FormAnnotationBundle",
+  "license": "MIT",
+  "require": {
+    "php": "^7.1",
+    "symfony/http-kernel": "^3.3 || ^4.0",
+    "symfony/dependency-injection": "^3.3 || ^4.0",
+    "symfony/event-dispatcher": "^3.3 || ^4.0",
+    "symfony/form": "^3.3 || ^4.0",
+    "symfony/http-foundation": "^3.3 || ^4.0",
+    "doctrine/annotations": "^1.6"
+  },
+  "require-dev": {
+    "matthiasnoback/symfony-dependency-injection-test": "^2.3",
+    "phpunit/phpunit": "^6.5"
+  },
+  "autoload": {
+    "psr-4": { "KunicMarko\\FormAnnotationBundle\\": "" },
+    "exclude-from-classmap": [
+      "Tests/"
+    ]
+  }
+}
