@@ -31,7 +31,11 @@ abstract class AbstractFormAnnotationListener
             return;
         }
 
-        if (!($annotation = $this->getAnnotation($controller)) || !$this->isSupported($annotation)) {
+        if (!($annotation = $this->getAnnotation($controller))) {
+            return;
+        }
+
+        if (!$this->isSupported($annotation)) {
             return;
         }
 

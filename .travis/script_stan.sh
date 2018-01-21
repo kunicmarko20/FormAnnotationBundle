@@ -2,4 +2,4 @@
 set -ev
 
 export PATH="$PATH:$HOME/.composer/vendor/bin"
-phpstan analyse src -l 6
+phpstan analyse src -l 7

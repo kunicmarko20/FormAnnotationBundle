@@ -18,9 +18,7 @@
         <whitelist>
             <directory>./src/</directory>
             <exclude>
-                <directory>./Tests/</directory>
-                <directory>./Annotation/</directory>
-                <directory>./Resources/</directory>
+                <directory>./src/Resources/</directory>
                 <directory>./vendor/</directory>
             </exclude>
         </whitelist>
