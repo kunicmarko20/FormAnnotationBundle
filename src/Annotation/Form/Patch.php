@@ -13,7 +13,7 @@ final class Patch extends AbstractFormAnnotation
     /**
      * @var bool
      */
-    protected $clearMissing = false;
+    public $clearMissing = false;
 
     public function getMethod() : string
     {

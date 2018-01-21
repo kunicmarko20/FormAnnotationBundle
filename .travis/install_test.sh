@@ -3,8 +3,6 @@ set -ev
 
 mkdir --parents "${HOME}/bin"
 
-composer global require "squizlabs/php_codesniffer"
-
 # Coveralls client install
 wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar --output-document="${HOME}/bin/coveralls"
 chmod u+x "${HOME}/bin/coveralls"

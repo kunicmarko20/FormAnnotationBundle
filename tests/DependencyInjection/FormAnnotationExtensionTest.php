@@ -11,7 +11,7 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
  */
 class FormAnnotationExtensionTest extends AbstractExtensionTestCase
 {
-    public function testLoadsFormServiceDefinitionWhenColorPickerBundleIsRegistered()
+    public function testLoadsFormServiceDefinitionFormAnnotationBundleIsRegistered()
     {
         $this->container->setParameter('kernel.bundles', ['FormAnnotationBundle' => 'whatever']);
         $this->load();
@@ -20,7 +20,7 @@ class FormAnnotationExtensionTest extends AbstractExtensionTestCase
             CreateFormAnnotationListener::class
         );
     }
-    
+
     protected function getContainerExtensions()
     {
         return [new FormAnnotationExtension()];

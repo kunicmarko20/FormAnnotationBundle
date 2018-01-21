@@ -2,8 +2,8 @@
 
 namespace KunicMarko\FormAnnotationBundle\EventListener;
 
-use KunicMarko\FormAnnotationBundle\Annotation\Form\AbstractFormAnnotation;
 use KunicMarko\FormAnnotationBundle\Annotation\Form;
+use KunicMarko\FormAnnotationBundle\Annotation\Form\AbstractFormAnnotation;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
@@ -26,7 +26,7 @@ final class CreateFormAnnotationListener extends AbstractFormAnnotationListener
     {
         $response = parent::onKernelController($event);
 
-        if (!$response instanceof AbstractFormAnnotation) {
+        if (!$response instanceof Form\Post) {
             return $response;
         }
 
@@ -58,8 +58,9 @@ final class CreateFormAnnotationListener extends AbstractFormAnnotationListener
     }
 
     /**
-     * @return object
      * @throws \InvalidArgumentException
+     *
+     * @return object
      */
     private function getObject(AbstractFormAnnotation $annotation)
     {

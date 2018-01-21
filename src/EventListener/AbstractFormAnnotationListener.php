@@ -2,8 +2,8 @@
 
 namespace KunicMarko\FormAnnotationBundle\EventListener;
 
-use KunicMarko\FormAnnotationBundle\Annotation\Form\AbstractFormAnnotation;
 use Doctrine\Common\Annotations\Reader;
+use KunicMarko\FormAnnotationBundle\Annotation\Form\AbstractFormAnnotation;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -69,5 +69,6 @@ abstract class AbstractFormAnnotationListener
     }
 
     abstract protected function isSupported(AbstractFormAnnotation $annotation) : bool;
+
     abstract protected function createForm(AbstractFormAnnotation $annotation) : FormInterface;
 }
