@@ -141,9 +141,46 @@ class UpdateFormAnnotationListenerTest extends TestCase
         ];
     }
 
+    public function testWrongParameterName()
+    {
+        $reader = $this->mockReader($annotation = $this->getValidAnnotation(new Form\Put()));
+
+        $formFactory = $this->createMock(FormFactory::class);
+
+        $requestStack = $this->mockRequestAttribute($annotation);
+
+        $updateFormAnnotationListener = new UpdateFormAnnotationListener($reader, $formFactory, $requestStack);
+
+        $event = $this->mockFilterControllerEvent();
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Parameter "parameter" not found.');
+        $updateFormAnnotationListener->onKernelController($event);
+    }
+
+    private function mockRequestAttribute($annotation)
+    {
+        $request = $this->createMock(Request::class);
+
+        $mockAttributes = $this->createMock(ParameterBag::class);
+        $mockAttributes->expects($this->once())
+            ->method('get')
+            ->with($annotation->parameter)
+            ->willReturn(null);
+
+        $request->attributes = $mockAttributes;
+
+        $requestStack = $this->createMock(RequestStack::class);
+        $requestStack->expects($this->once())
+            ->method('getCurrentRequest')
+            ->willReturn($request);
+
+        return $requestStack;
+    }
+
     public function testInvalidForm()
     {
-        $reader = $this->mockReader($annotation = $this->populateAnnotation(new Form\Put()));
+        $reader = $this->mockReader($annotation = $this->getValidAnnotation(new Form\Put()));
 
         list($formFactory, $parameterValue) = $this->mockForm($annotation);
 
@@ -159,7 +196,7 @@ class UpdateFormAnnotationListenerTest extends TestCase
         $updateFormAnnotationListener->onKernelController($event);
     }
 
-    private function populateAnnotation($annotation): Form\AbstractFormAnnotation
+    private function getValidAnnotation($annotation): Form\AbstractFormAnnotation
     {
         $annotation->formType = 'formType';
         $annotation->parameter = 'parameter';
@@ -218,7 +255,7 @@ class UpdateFormAnnotationListenerTest extends TestCase
 
     public function testValidForm()
     {
-        $reader = $this->mockReader($annotation = $this->populateAnnotation(new Form\Patch()));
+        $reader = $this->mockReader($annotation = $this->getValidAnnotation(new Form\Patch()));
 
         list($formFactory, $parameterValue) = $this->mockForm($annotation, true);
 

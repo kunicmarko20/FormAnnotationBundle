@@ -80,9 +80,8 @@ final class CreateFormAnnotationListener extends AbstractFormAnnotationListener
         if (!($type = $reflectionParameter->getType())) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'Parameter "%s" in "%s" method is missing a type.',
-                    $parameter,
-                    $this->reflectionMethod->getName()
+                    'Parameter "%s" is missing a type.',
+                    $parameter
                 )
             );
         }
@@ -103,9 +102,8 @@ final class CreateFormAnnotationListener extends AbstractFormAnnotationListener
 
         throw new \InvalidArgumentException(
             sprintf(
-                'Parameter "%s" not found in "%s" method.',
-                $parameter,
-                $this->reflectionMethod->getName()
+                'Parameter "%s" not found.',
+                $parameter
             )
         );
     }

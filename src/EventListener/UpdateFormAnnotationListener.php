@@ -20,8 +20,25 @@ final class UpdateFormAnnotationListener extends AbstractFormAnnotationListener
     {
         return $this->formFactory->create(
             $annotation->formType,
-            $this->request->attributes->get($annotation->parameter),
+            $this->getObject($annotation),
             ['method' => $annotation->getMethod()]
+        );
+    }
+
+    /**
+     * @throws \InvalidArgumentException
+     */
+    private function getObject(AbstractFormAnnotation $annotation)
+    {
+        if ($object = $this->request->attributes->get($annotation->parameter)) {
+            return $object;
+        }
+
+        throw new \InvalidArgumentException(
+            sprintf(
+                'Parameter "%s" not found.',
+                $annotation->parameter
+            )
         );
     }
 }
